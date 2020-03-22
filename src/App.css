@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+#nav {
+  display:flex;
+  background-color: orange;
+  justify-content: flex-end;
+}
+#dropdwn {
+  font-size: 30px;
+}
+#movieC {
+  background-color: transparent;
+  border: 1px solid green;
+}

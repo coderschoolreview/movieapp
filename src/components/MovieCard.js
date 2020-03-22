@@ -2,6 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, ListGroupItem, ListGroup } from "react-bootstrap";
 import moment from 'moment'
+import '../App.css';
 
 export default function MovieCard(props) {
 
@@ -20,7 +21,7 @@ export default function MovieCard(props) {
         let descriptionLength = (movie.overview.split('.')[0] + ".");
 
             return (
-                <Card className="col-md-3" style={{ width: '18rem' }}>
+                <Card id="movieC"className="col-md-3" style={{ width: '18rem' }}>
                     <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`} />
                     <Card.Body>
                         <Card.Title>{movie.title}</Card.Title>
@@ -32,8 +33,7 @@ export default function MovieCard(props) {
                         <ListGroupItem>Genre: {renderGenres(movie.genres)}</ListGroupItem>
                     </ListGroup>
                     <Card.Body>
-                        <Card.Link href="#">Card Link</Card.Link>
-                        <Card.Link href="#">Another Link</Card.Link>
+                        <Card.Link href="#">Trailer</Card.Link>
                     </Card.Body>
                 </Card>
 
