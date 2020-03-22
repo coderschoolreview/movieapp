@@ -1,8 +1,8 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Card, ListGroupItem, ListGroup } from "react-bootstrap";
 import moment from 'moment'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css';
+import { Card, ListGroupItem, ListGroup } from "react-bootstrap";
 
 export default function MovieCard(props) {
 
@@ -23,21 +23,25 @@ export default function MovieCard(props) {
     //     style = {{ backgroundImage: url(${ bgimage }), backgroundSize: 'cover' }
     // }
         return (
-            <Card id="movieC" className="col-md-3" >
+            <div className="col-md-3">
+            <Card id="movieC"  >
                 <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`} />
-                <Card.Body style={{ padding: "0px 10px 0px 10px"}} >
-                    <Card.Title>{movie.title}</Card.Title>
-                    <Card.Text>{descriptionLength}</Card.Text>
+                <Card.Body id="cardBody" >
+                    <Card.Title style={{fontSize:"1.5rem"}}>{movie.title}</Card.Title>
                 </Card.Body>
-                <ListGroup className="list-group-flush">
-                    <ListGroupItem>Released: {releaseDate}</ListGroupItem>
-                    <ListGroupItem>Rating: {movie.vote_average}</ListGroupItem>
+                    <Card.Text id="descriptionBox">{descriptionLength}</Card.Text>
+                <ListGroup className="list-group-flush" >
                     <ListGroupItem>Genre: {renderGenres(movie.genres)}</ListGroupItem>
+                    <div style={{display:"flex" , justifyContent:"space-between"}}>
+                    <ListGroupItem >Released: {releaseDate}</ListGroupItem>
+                    <ListGroupItem >Rating: {movie.vote_average}</ListGroupItem>
+                    </div>
                 </ListGroup>
-                <Card.Body>
+                <Card.Body style={{ display: "flex", justifyContent: "center" }}>
                     <Card.Link href="#">Trailer</Card.Link>
                 </Card.Body>
             </Card>
+            </div>
 
         )
     });

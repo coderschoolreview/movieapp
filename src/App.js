@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { render } from 'react-dom';
 import logo from './jurgisLogo.png';
 import bgimage from './dp.jpg'
-import './App.css';
 import MovieCard from './components/MovieCard.js';
 import Spinner from 'react-bootstrap/Spinner'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 import { Pagination, Jumbotron, Container, Button, Navbar, Nav, NavDropdown, Form, FormControl, } from "react-bootstrap";
 let apikey = process.env.REACT_APP_JURGIS;
 let keyword = '';
@@ -61,7 +61,7 @@ function App() {
       </Spinner>
     )
   }
-  //Navbar: Search input
+  //Navbar: Search input HI i'M IN :.))don't break my shit :D OK WILL DO you can just watch
   let searchByKeyword = (e) => {
     keyword = e.target.value;
     if (keyword === '') {
@@ -90,20 +90,21 @@ function App() {
 
   return (
     //order of elements on the main page
-    <div id="main">
+    <div id="main" >
       <Jumbotron style={{ backgroundImage: `url(${bgimage})`, backgroundSize: 'cover' }}>
         <Container>
-          <h1 style={{ color: "white" }}>Search for movies, serials, actors...</h1>
-          <FormControl style={{ width: "300px" }} Ztype="text" placeholder="Search" className="mr-sm-2" onChange={(e) => searchByKeyword(e)} />
+          {/* <h1 style={{ color: "white" }}>Search for movies | serials | actors...</h1> */}
+          
         </Container>
       </Jumbotron>
       <Navbar sticky="top" id="nav" bg="dark" variant="dark" expand="sm" navbar-default>
-        <Navbar.Brand href="#home">
-          <img src={logo} width="90px" className="d-inline-block align-top" />
-        </Navbar.Brand>
+        {/* <Navbar.Brand href="#home"> */}
+          <img src={logo} onClick=" " width="100px" paddingBottom="-50px" className="d-inline-block align-top" />
+        {/* </Navbar.Brand> */}
+        <FormControl id="searchBox" style={{ maxWidth: "30%" }} Ztype="text" placeholder="Search for movies | serials | actors..." className="mr-sm-2" onChange={(e) => searchByKeyword(e)} />
         {/* <FormControl style={{ width: "200px" }} Ztype="text" placeholder="Search" className="mr-sm-2" onChange={(e) => searchByKeyword(e)} /> */}
         <Nav className="mr-auto">
-          <NavDropdown className="text-info" style={{ color: "#17a2b8" }} title="Genre" id="basic-nav-dropdown dropdwn">
+          <NavDropdown className="text-info dropdown" style={{ color: "#17a2b8" }} title="Genre" id="basic-nav-dropdown dropdown">
             <NavDropdown.Item className="text-info" onClick={() => filteredMovies(28)} href="#action/3.1">Action</NavDropdown.Item>
             <NavDropdown.Item className="text-info" onClick={() => filteredMovies(12)} href="#action/3.2">Adventure</NavDropdown.Item>
             <NavDropdown.Item className="text-info" onClick={() => filteredMovies(35)} href="#action/3.1">Comedy</NavDropdown.Item>
@@ -117,29 +118,18 @@ function App() {
             <NavDropdown.Item className="text-info" onClick={() => filteredMovies(878)} href="#action/3.2">Science Fiction</NavDropdown.Item>
             <NavDropdown.Item className="text-info" onClick={() => filteredMovies(53)} href="#action/3.2">Thriller</NavDropdown.Item>
           </NavDropdown>
-          <NavDropdown title="Sort by" id="basic-nav-dropdown dropdwn">
-            <NavDropdown.Item onClick={() => sortByPopularity()} href="#action/3.1">Most popular</NavDropdown.Item>
-            <NavDropdown.Item onClick={() => sortByHighestRating()} href="#action/3.2">Top rated</NavDropdown.Item>
+          <NavDropdown title="Sort by" className="dropbown" style={{ color: "#17a2b8" }} id="basic-nav-dropdown dropdwn">
+            <NavDropdown.Item style={{ color: "#17a2b8" }} onClick={() => sortByPopularity()} href="#action/3.1">Most popular</NavDropdown.Item>
+            <NavDropdown.Item style={{ color: "#17a2b8" }} onClick={() => sortByHighestRating()} href="#action/3.2">Top rated</NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar >
-      {/* <Jumbotron style={{ backgroundImage: `url(${bgimage})`, backgroundSize: 'cover' }}>
-        <Container>
-          <h1 style={{ color: "white" }}>Search for movies, serials, actors...</h1>
-          <FormControl style={{ width: "300px" }} Ztype="text" placeholder="Search" className="mr-sm-2" onChange={(e) => searchByKeyword(e)} />
-        </Container>
-      </Jumbotron> */}
-
       <div id="display">
         <MovieCard className="col-md-3" fetchedMovies={movies} />
-        <footer>
-        <Pagination>
-          <Button>Back to Top</Button>
-          <Pagination.First />
-          <Pagination.Prev />
-          <Pagination.Next onClick={() => loadMore()} />
-        </Pagination>
-        </footer>
+        <div style={{display:"flex"}}>
+          <Button className="pageNav minus" > - </Button>
+          <Button className="pageNav plus" onClick={() => loadMore()}> + </Button> 
+        </div>
       </div>
     </div>
   );

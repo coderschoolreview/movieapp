@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
 }
@@ -38,15 +40,21 @@
 }
 #nav {
   display:flex;
-  justify-content: flex-end;
-  height: 70px;
+  /* justify-content: center; */
+  background-color:#472d4f!important;
+  border-top: 1px solid #949494;
+  padding-bottom: 0;
+  padding-top: 0;
+  /* border-bottom: 1px solid #31c6e8; */
 }
 #dropdwn {
   font-size: 30px;
 }
 #movieC {
   padding: 0;
-  margin:10px;
+  margin:5px;
+
+  
 }
 #display {
   display: flex;
@@ -56,10 +64,54 @@
   padding: 20px;
 }
 #main {
-  background-color: #333A40;
+  background-color: #4c4c4c;
 }
+
+#searchBox {
+  border-color:#31e89f;
+  background-color: transparent;
+  color:lightgrey;
+}
+
 .jumbotron {
-  margin-bottom:0px;
-  border-bottom: 1px solid #31c6e8;
-  border-top: 1px solid #31c6e8;
+  margin-bottom:0;
+  padding: 5.5rem 2rem;
+}
+.dropdown {
+  border-bottom: 1px solid #31e89f;
+  border-top: 1px solid #31e89f;
+  /* display:flex;
+  justify-content: center; */
+}
+.navbar-nav {
+  display:flex;
+  justify-content: space-around;
+  width:100%;
+
+}
+//MovieCard
+
+#cardTitle {
+  font-weight:700;
+  color:blue;
+}
+#cardBody {
+  background-color:#472d4f;
+  text-align: center;
+  color:white;
+}
+.card {
+  border: none;
+  border-radius: 20px;
+}
+#descriptionBox {
+  padding:5px;
+}
+/* Page Nav buttons */
+.pageNav {
+  margin:10px;
+  background-color: #472d4f;
+  color:white;
+  border-radius: 50%;
+  border:none;
 }
