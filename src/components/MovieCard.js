@@ -19,26 +19,28 @@ export default function MovieCard(props) {
         let releaseDate = moment(movie.release_date).format("MMMM YYYY");
         //limit the description text lenght
         let descriptionLength = (movie.overview.split('.')[0] + ".");
+        
+    //     style = {{ backgroundImage: url(${ bgimage }), backgroundSize: 'cover' }
+    // }
+        return (
+            <Card id="movieC" className="col-md-3" >
+                <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`} />
+                <Card.Body style={{ padding: "0px 10px 0px 10px"}} >
+                    <Card.Title>{movie.title}</Card.Title>
+                    <Card.Text>{descriptionLength}</Card.Text>
+                </Card.Body>
+                <ListGroup className="list-group-flush">
+                    <ListGroupItem>Released: {releaseDate}</ListGroupItem>
+                    <ListGroupItem>Rating: {movie.vote_average}</ListGroupItem>
+                    <ListGroupItem>Genre: {renderGenres(movie.genres)}</ListGroupItem>
+                </ListGroup>
+                <Card.Body>
+                    <Card.Link href="#">Trailer</Card.Link>
+                </Card.Body>
+            </Card>
 
-            return (
-                <Card id="movieC"className="col-md-3" style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`} />
-                    <Card.Body>
-                        <Card.Title>{movie.title}</Card.Title>
-                        <Card.Text>{descriptionLength}</Card.Text>
-                    </Card.Body>
-                    <ListGroup className="list-group-flush">
-                        <ListGroupItem>Released: {releaseDate}</ListGroupItem>
-                        <ListGroupItem>Rating: {movie.vote_average}</ListGroupItem>
-                        <ListGroupItem>Genre: {renderGenres(movie.genres)}</ListGroupItem>
-                    </ListGroup>
-                    <Card.Body>
-                        <Card.Link href="#">Trailer</Card.Link>
-                    </Card.Body>
-                </Card>
-
-            )
-        });
+        )
+    });
 
     return (
         <div className="row">

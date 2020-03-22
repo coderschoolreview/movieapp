@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { render } from 'react-dom';
 import logo from './jurgisLogo.png';
+import bgimage from './dp.jpg'
 import './App.css';
 import MovieCard from './components/MovieCard.js';
 import Spinner from 'react-bootstrap/Spinner'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Navbar, Nav, NavDropdown, Form, FormControl, } from "react-bootstrap";
+import { Pagination, Jumbotron, Container, Button, Navbar, Nav, NavDropdown, Form, FormControl, } from "react-bootstrap";
 let apikey = process.env.REACT_APP_JURGIS;
 let keyword = '';
 let page = 1;
@@ -31,7 +32,11 @@ function App() {
   let loadMore = () => {
     page++;
     popularMovies()
+    // FIND OUT HOW TO CONTCAT
+    // this.setMovies(movieList.concat(data.results)); 
   };
+
+
 
   const fetchGenres = async () => {
     let secondUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apikey}&language=en-US`
@@ -86,13 +91,19 @@ function App() {
   return (
     //order of elements on the main page
     <div id="main">
-      <Navbar id="nav" bg="dark" variant="dark" expand="lg">
+      <Jumbotron style={{ backgroundImage: `url(${bgimage})`, backgroundSize: 'cover' }}>
+        <Container>
+          <h1 style={{ color: "white" }}>Search for movies, serials, actors...</h1>
+          <FormControl style={{ width: "300px" }} Ztype="text" placeholder="Search" className="mr-sm-2" onChange={(e) => searchByKeyword(e)} />
+        </Container>
+      </Jumbotron>
+      <Navbar sticky="top" id="nav" bg="dark" variant="dark" expand="sm" navbar-default>
         <Navbar.Brand href="#home">
-          <img src={logo} width="100px" height="100px" className="d-inline-block align-top" />
+          <img src={logo} width="90px" className="d-inline-block align-top" />
         </Navbar.Brand>
-        <FormControl style={{ width: "200px" }} Ztype="text" placeholder="Search" className="mr-sm-2" onChange={(e) => searchByKeyword(e)} />
+        {/* <FormControl style={{ width: "200px" }} Ztype="text" placeholder="Search" className="mr-sm-2" onChange={(e) => searchByKeyword(e)} /> */}
         <Nav className="mr-auto">
-          <NavDropdown title="Genre" id="basic-nav-dropdown dropdwn">
+          <NavDropdown className="text-info" style={{ color: "#17a2b8" }} title="Genre" id="basic-nav-dropdown dropdwn">
             <NavDropdown.Item className="text-info" onClick={() => filteredMovies(28)} href="#action/3.1">Action</NavDropdown.Item>
             <NavDropdown.Item className="text-info" onClick={() => filteredMovies(12)} href="#action/3.2">Adventure</NavDropdown.Item>
             <NavDropdown.Item className="text-info" onClick={() => filteredMovies(35)} href="#action/3.1">Comedy</NavDropdown.Item>
@@ -112,12 +123,37 @@ function App() {
           </NavDropdown>
         </Nav>
       </Navbar >
+      {/* <Jumbotron style={{ backgroundImage: `url(${bgimage})`, backgroundSize: 'cover' }}>
+        <Container>
+          <h1 style={{ color: "white" }}>Search for movies, serials, actors...</h1>
+          <FormControl style={{ width: "300px" }} Ztype="text" placeholder="Search" className="mr-sm-2" onChange={(e) => searchByKeyword(e)} />
+        </Container>
+      </Jumbotron> */}
 
-      <div>
-        <MovieCard fetchedMovies={movies} />
-        <Button onClick={() => loadMore()} variant="outline-danger">More</Button>
+      <div id="display">
+        <MovieCard className="col-md-3" fetchedMovies={movies} />
+        <footer>
+        <Pagination>
+          <Button>Back to Top</Button>
+          <Pagination.First />
+          <Pagination.Prev />
+          <Pagination.Next onClick={() => loadMore()} />
+        </Pagination>
+        </footer>
       </div>
     </div>
   );
 }
 export default App;
+
+{/* <Jumbotron style={{ backgroundImage: url(${ bgimage }), backgroundSize: 'cover' }}> */ }
+
+// <Jumbotron style={{ backgroundImage: url(${ bgimage }), backgroundSize: 'cover' }}>
+//   <Container>
+//     <h1 class="TextColor">Unlimited movies, TV shows, and more.</h1>
+//     <Row>
+//       <FormControl fluid type="text" placeholder="Search" className="mr-sm-2 col-md-6" onChange={(e) => { searchByKeyword(e) }} />
+//       <Button onClick={() => searchByKeyword()} className="mr-sm-2 col-md-2" variant="danger">Search</Button>
+//     </Row>
+//   </Container>
+// </Jumbotron>
