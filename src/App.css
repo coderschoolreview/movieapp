@@ -89,7 +89,7 @@
   width:100%;
 
 }
-//MovieCard
+
 
 #cardTitle {
   font-weight:700;
@@ -120,7 +120,7 @@
 /* Modal */
 .video {
   height:100%;
-  wifth:100%;
+  width:100%;
 }
 
 #range{
@@ -147,3 +147,5 @@
   background:#472d4f;
   border: 1px solid #31e89f;
 }
+
+
