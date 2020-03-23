@@ -8,7 +8,9 @@ import Spinner from 'react-bootstrap/Spinner'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Jumbotron, Button, Navbar, Nav, NavDropdown, FormControl, } from "react-bootstrap";
-import ReactModal from 'react-modal'
+import ReactModal from 'react-modal';
+import YouTube from '@u-wave/react-youtube';
+
 let apikey = process.env.REACT_APP_JURGIS;
 let keyword = '';
 let page = 1;
@@ -19,6 +21,7 @@ function App() {
   const [genres, setGenres] = useState([]);
   let [modal, SetModal] = useState(false);
   let [rate, setRate] = useState(0);
+  let [trailer, setTrailer] = useState('');
 
   let popularMovies = async () => {
     let url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apikey}&language=en-US&page=${page}`;
@@ -56,7 +59,7 @@ function App() {
 
   let searchByRate = (value) => {
     let rounded = Math.round(value * 10) / 10
-    
+
     console.log("value", rounded)
     setRate(value)
 
@@ -100,7 +103,12 @@ function App() {
     setMovies(sortedHighestRating);
   };
 
-  const openModal = () => {
+  const openModal = async (movieId) => {
+    let url = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apikey}&language=en-US`;
+    let response = await fetch(url);
+    let data = await response.json();
+    console.log('hehe data video:', data)
+    setTrailer(data.results[0].key)
     SetModal(true)
   }
 
@@ -109,7 +117,7 @@ function App() {
     <div id="main" >
       <Jumbotron style={{ backgroundImage: `url(${bgimage})`, backgroundSize: 'cover' }}>
       </Jumbotron>
-      <Navbar sticky="top" id="nav" bg="dark" variant="dark" expand="sm" navbar-default>
+      <Navbar id="nav" bg="dark" variant="dark" expand="sm" navbar-default>
         <img src={logo} width="100px" className="d-inline-block align-top" />
         <FormControl id="searchBox" style={{ maxWidth: "30%" }} Ztype="text" placeholder="Search for movies | serials | actors..." className="mr-sm-2" onChange={(e) => searchByKeyword(e)} />
         <InputRange
@@ -119,7 +127,7 @@ function App() {
           value={rate}
           onChange={value => searchByRate(value)} />
 
-          {/* step={2}
+        {/* step={2}
   value={this.state.value}
   onChange={value => this.setState({ value })} /> */}
 
@@ -146,7 +154,7 @@ function App() {
       </Navbar >
 
       <div id="display">
-        <MovieCard className="col-md-3" fetchedMovies={movies} />
+        <MovieCard className="col-md-3" fetchedMovies={movies} openModal={openModal} />
         <div style={{ display: "flex" }}>
           <Button className="pageNav minus" > - </Button>
           <Button className="pageNav plus" onClick={() => loadMore()}> + </Button>
@@ -155,9 +163,15 @@ function App() {
       {/* <Movie/> */}
 
 
-      <ReactModal isOpen={modal}
-        style={{ overlay: {}, contents: {} }}
-        onRequestClose={() => SetModal(false)} />
+      <ReactModal
+        isOpen={modal}
+        style={{ overlay: { display: "flex", justifyContent: "center" }, content: { width: "70%", height: "70%", position: "relative" } }}
+        onRequestClose={() => SetModal(false)}>
+        <YouTube
+          video={trailer}
+          autoplay
+          className="video"/>
+      </ReactModal>
     </div >
   );
 }
