@@ -42,7 +42,7 @@
   display:flex;
   /* justify-content: center; */
   background-color:#472d4f!important;
-  border-top: 1px solid #949494;
+  border-top: 2px solid #31e89f;
   padding-bottom: 0;
   padding-top: 0;
   /* border-bottom: 1px solid #31c6e8; */
@@ -105,7 +105,8 @@
   border-radius: 20px;
 }
 #descriptionBox {
-  padding:5px;
+ padding:10px;
+ text-align: center;
 }
 /* Page Nav buttons */
 .pageNav {
@@ -114,4 +115,35 @@
   color:white;
   border-radius: 50%;
   border:none;
+}
+
+/* Modal */
+.video {
+  height:100%;
+  wifth:100%;
+}
+
+#range{
+  /* min-width: 100px;;
+  background-color:red;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; */
+}
+/* range slider */
+.input-range__label {
+  color: #31e89f;
+}
+
+.input-range__track {
+  background: #31e89f ;
+}
+.input-range__track--active {
+  background:#31e89f;
+  width:20px;
+}
+.input-range__slider {
+  background:#472d4f;
+  border: 1px solid #31e89f;
 }

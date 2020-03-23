@@ -16,12 +16,10 @@ export default function MovieCard(props) {
             return ""
         }
         //momentJS to set the time format 
-        let releaseDate = moment(movie.release_date).format("MMMM YYYY");
+        let releaseDate = moment(movie.release_date).format("MMM YYYY");
         //limit the description text lenght
         let descriptionLength = (movie.overview.split('.')[0] + ".");
         
-    //     style = {{ backgroundImage: url(${ bgimage }), backgroundSize: 'cover' }
-    // }
         return (
             <div className="col-md-3">
             <Card id="movieC"  >
@@ -29,17 +27,15 @@ export default function MovieCard(props) {
                 <Card.Body id="cardBody" >
                     <Card.Title style={{fontSize:"1.5rem"}}>{movie.title}</Card.Title>
                 </Card.Body>
-                    <Card.Text id="descriptionBox">{descriptionLength}</Card.Text>
+                    <Card.Text style={{margin:"0"}} id="descriptionBox">{descriptionLength}</Card.Text>
                 <ListGroup className="list-group-flush" >
                     <ListGroupItem>Genre: {renderGenres(movie.genres)}</ListGroupItem>
                     <div style={{display:"flex" , justifyContent:"space-between"}}>
-                    <ListGroupItem >Released: {releaseDate}</ListGroupItem>
+                    <ListGroupItem >{releaseDate}</ListGroupItem>
                     <ListGroupItem >Rating: {movie.vote_average}</ListGroupItem>
                     </div>
                 </ListGroup>
-                <Card.Body style={{ display: "flex", justifyContent: "center" }}>
-                    <Card.Link href="#">Trailer</Card.Link>
-                </Card.Body>
+                  <Card.Link style={{ display: "flex", justifyContent: "center" }} href="#" onClick={()=>props.openModal(movie.id)}>Trailer</Card.Link>
             </Card>
             </div>
 
